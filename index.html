@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: rgb(29, 23, 60);
+            color: rgb(35, 30, 71);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: rgb(35, 30, 71);
+            color: white;
+            padding: 20px;
+            overflow-y: auto;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar h2 {
+            font-size: 1.5rem;
+            margin: 0 0 20px;
+            color: rgb(195, 44, 95);
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin: 10px 0;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: white;
+            display: inline-block;
+            padding: 10px 10px 10px 10px;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .sidebar a:not(.active):hover {
+            background-color: rgb(195, 44, 95);
+        }
+
+        .sidebar a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 2px;
+            background-color: rgb(195, 44, 95);
+            transition: width 0.3s ease;
+        }
+
+        .sidebar a:not(.active)::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background-color: rgb(195, 44, 95);
+            transition: width 0.3s ease;
+        }
+
+        .sidebar .sub-menu {
+            padding-left: 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+
+        .sidebar .sub-menu.active {
+            max-height: 200px;
+        }
+
+        .sidebar .menu-item {
+            cursor: pointer;
+        }
+
+        .sidebar .menu-item.has-submenu > a::before {
+            content: '\25B6';
+            position: absolute;
+            left: 230px;
+            font-size: 12px;
+            transition: transform 0.5s ease;
+            transform: rotate(0deg);
+        }
+
+        .sidebar .menu-item.has-submenu.active > a::before {
+            content: '\25B6';
+            transform: rotate(90deg);
+        }
+
+        .sidebar .menu-item.has-submenu > a {
+            cursor: pointer;
+        }
+
+        .content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            background-color: rgb(29, 23, 60);
+            color: white;
+        }
+
+        .content section {
+            display: none;
+            margin-bottom: 40px;
+        }
+
+        .content section.active {
+            display: block;
+        }
+
+        .content h1 {
+            font-size: 2rem;
+            color: rgb(195, 44, 95);
+            margin-top: 0;
+        }
+
+        button {
+            background-color: rgb(195, 44, 95);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: rgb(165, 34, 85);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>API Docs</h2>
+        <ul>
+            <li class="menu-item">
+                <a href="#introduction" data-section="introduction">Introduction</a>
+            </li>
+            <li class="menu-item has-submenu">
+                <a href="#">Authentication</a>
+                <ul class="sub-menu">
+                    <li><a href="#api-keys" data-section="api-keys">API Keys</a></li>
+                    <li><a href="#oauth" data-section="oauth">OAuth</a></li>
+                </ul>
+            </li>
+            <li class="menu-item has-submenu">
+                <a href="#">Endpoints</a>
+                <ul class="sub-menu">
+                    <li><a href="#users" data-section="users">Users</a></li>
+                    <li><a href="#data" data-section="data">Data</a></li>
+                </ul>
+            </li>
+            <li class="menu-item">
+                <a href="#examples" data-section="examples">Examples</a>
+            </li>
+        </ul>
+    </div>
+    <div class="content">
+        <section id="introduction" class="section">
+            <h1>Introduction</h1>
+            <p>Welcome to the API Documentation. This guide provides details on how to use our API.</p>
+            <button>Get Started</button>
+        </section>
+        <section id="api-keys" class="section">
+            <h1>API Keys</h1>
+            <p>Details about generating and using API keys.</p>
+        </section>
+        <section id="oauth" class="section">
+            <h1>OAuth</h1>
+            <p>Information on OAuth authentication.</p>
+        </section>
+        <section id="users" class="section">
+            <h1>Users</h1>
+            <p>Details about user-related endpoints.</p>
+        </section>
+        <section id="data" class="section">
+            <h1>Data</h1>
+            <p>Details about data endpoints.</p>
+        </section>
+        <section id="examples" class="section">
+            <h1>Examples</h1>
+            <p>Code examples for using the API.</p>
+        </section>
+    </div>
+    <script>
+        function setActiveLink(link) {
+            document.querySelectorAll('.sidebar a').forEach(a => {
+                a.classList.remove('active');
+            });
+            link.classList.add('active');
+        }
+
+        document.querySelectorAll('.sidebar .menu-item').forEach(item => {
+            const link = item.querySelector('a');
+            const subMenu = item.querySelector('.sub-menu');
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (item.classList.contains('has-submenu')) {
+                    item.classList.toggle('active');
+                    if (subMenu) {
+                        subMenu.classList.toggle('active');
+                    }
+                } else {
+                    const sectionId = link.getAttribute('data-section');
+                    if (sectionId) {
+                        document.querySelectorAll('.content section').forEach(section => {
+                            section.classList.remove('active');
+                        });
+                        document.querySelector(`#${sectionId}`).classList.add('active');
+                        window.location.hash = link.getAttribute('href');
+                        setActiveLink(link);
+                    }
+                }
+            });
+        });
+
+        document.querySelectorAll('.sidebar .sub-menu a').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const sectionId = item.getAttribute('data-section');
+                if (sectionId) {
+                    document.querySelectorAll('.content section').forEach(section => {
+                        section.classList.remove('active');
+                    });
+                    document.querySelector(`#${sectionId}`).classList.add('active');
+                    window.location.hash = item.getAttribute('href');
+                    setActiveLink(item);
+                }
+            });
+        });
+
+        document.querySelector('#introduction').classList.add('active');
+        document.querySelector('a[data-section="introduction"]').classList.add('active');
+
+        window.addEventListener('load', () => {
+            const hash = window.location.hash.replace('#', '');
+            if (hash) {
+                const targetLink = document.querySelector(`a[data-section="${hash}"]`);
+                if (targetLink) {
+                    const parentSubMenu = targetLink.closest('.sub-menu');
+                    if (parentSubMenu) {
+                        parentSubMenu.classList.add('active');
+                        parentSubMenu.parentElement.classList.add('active');
+                    }
+                    document.querySelectorAll('.content section').forEach(section => {
+                        section.classList.remove('active');
+                    });
+                    document.querySelector(`#${hash}`).classList.add('active');
+                    setActiveLink(targetLink);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

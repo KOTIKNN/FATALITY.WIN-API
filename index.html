@@ -25,9 +25,22 @@
         }
 
         .sidebar h2 {
-            font-size: 1.5rem;
+            font-size: 2.3rem;
             margin: 0 0 20px;
-            color: rgb(195, 44, 95);
+            color: rgb(255, 255, 255);
+            font-family: 'Gotham', sans-serif; 
+            font-weight: bold;
+            -webkit-text-stroke: 2px rgb(0, 0, 255); 
+            animation: strokeColorChange 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes strokeColorChange {
+            0% {
+                -webkit-text-stroke-color: rgb(0, 0, 255);
+            }
+            100% {
+                -webkit-text-stroke-color: rgb(128, 0, 128);
+            }
         }
 
         .sidebar ul {
@@ -167,7 +180,7 @@
 </head>
 <body>
     <div class="sidebar">
-        <h2>API Docs</h2>
+        <h2>FATALITY API</h2>
         <ul>
             <li class="menu-item">
                 <a href="#introduction" data-section="introduction">Introduction</a>
@@ -194,7 +207,7 @@
     <div class="content">
         <section id="introduction" class="section">
             <h1>Introduction</h1>
-            <p>Welcome to the API Documentation. This guide provides details on how to use our API.</p>
+            <p>Welcome to the FATALITY.WIN API Documentation. This guide provides details on how to use our API.</p>
             <button>Get Started</button>
         </section>
         <section id="api-keys" class="section">

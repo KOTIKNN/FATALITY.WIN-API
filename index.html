@@ -321,6 +321,7 @@
                     <li class="menu-item has-submenu">
                         <a href="#Examples" data-section="Examples">Examples</a>
                         <ul class="sub-menu">
+                            <li><a href="#ExamplesTalkshit" data-section="ExamplesTalkshit">Talk Shit</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -350,10 +351,17 @@
                 <p>Lua scripts let you extend the cheat in various ways and are a great way to automate parts of the cheat or add that one unique feature you always wanted. To get started with Lua scripting, you'll need a suitable text editor. We recommend downloading <a href="https://code.visualstudio.com/download" target="_blank">VS Code</a> or <a href="https://www.sublimetext.com/download" target="_blank">Sublime Text</a>, but <a href="https://notepad-plus-plus.org/downloads/" target="_blank">Notepad++</a> or even the built-in Microsoft Notepad will work in a pinch. If you're unfamiliar with the Lua programming language, <a href="https://learnxinyminutes.com/docs/lua/" target="_blank">Lua in 5 minutes</a> is a great guide to get started.</p>
             </div>
         </section>
+        <section id="ExamplesTalkshit" class="section">
+            <div class="api-function">
+                <h1>Talk Shit</h1>
+                <p>ну тут должна быть говорился</p>
+            </div>
+        </section>
         <section id="Examples" class="section">
             <div class="api-function">
                 <h1>Examples</h1>
                 <p>These example show how to use certain parts of the FATALITY.WIN API and highlight best practices.</p>
+            </div>
         </section>
         <section id="ui" class="section">
             <div class="api-function">
@@ -532,7 +540,7 @@
                     const parentSubMenu = targetLink.closest('.sub-menu');
                     if (parentSubMenu) {
                         parentSubMenu.classList.add('active');
-                        parentSubMenu.parentElement.classList.add('active');
+                        parentSubMenu.closest('.menu-item').classList.add('active');
                     }
                     document.querySelectorAll('.content section').forEach(section => {
                         section.classList.remove('active');

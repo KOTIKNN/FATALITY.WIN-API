@@ -28,9 +28,9 @@
             font-size: 2.3rem;
             margin: 0 0 20px;
             color: rgb(255, 255, 255);
-            font-family: 'Gotham', sans-serif; 
+            font-family: 'Gotham', sans-serif;
             font-weight: bold;
-            -webkit-text-stroke: 2px rgb(0, 0, 255); 
+            -webkit-text-stroke: 2px rgb(0, 0, 255);
             animation: strokeColorChange 2s ease-in-out infinite alternate;
         }
 
@@ -41,6 +41,14 @@
             100% {
                 -webkit-text-stroke-color: rgb(128, 0, 128);
             }
+        }
+
+        .sidebar p {
+            color: white;
+            font-size: 1rem;
+            margin: 10px 0;
+            line-height: 1.5;
+            font-weight: 700;
         }
 
         .sidebar ul {
@@ -55,7 +63,7 @@
 
         .sidebar a {
             text-decoration: none;
-            color: white;
+            color: rgb(220, 220, 220);
             display: inline-block;
             padding: 10px 10px 10px 10px;
             border-radius: 5px;
@@ -119,6 +127,10 @@
             transform: rotate(90deg);
         }
 
+        .sidebar .sub-menu .menu-item.has-submenu > a::before {
+            left: 210px;
+        }
+
         .sidebar .menu-item.has-submenu > a {
             cursor: pointer;
         }
@@ -140,12 +152,6 @@
             display: block;
         }
 
-        .content h1 {
-            font-size: 2rem;
-            color: rgb(195, 44, 95);
-            margin-top: 0;
-        }
-
         button {
             background-color: rgb(195, 44, 95);
             color: white;
@@ -160,6 +166,88 @@
             background-color: rgb(165, 34, 85);
         }
 
+        .api-function {
+            background-color: rgb(35, 30, 71);
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 0px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(195, 44, 95, 0.3);
+        }
+
+        .api-function h1 {
+            font-size: 2.5rem;
+            color: rgb(195, 44, 95);
+            margin: 0px 0 20px 0;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .api-function p {
+            font-size: 1.1rem;
+            color: white;
+            margin: 15px 0;
+        }
+
+        .api-function .code {
+            font-family: 'Courier New', Courier, monospace;
+            color: rgb(195, 44, 95);
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 1.2rem;
+        }
+
+        .api-function table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .api-function th,
+        .api-function td {
+            padding: 14px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .api-function th {
+            background-color: rgb(195, 44, 95);
+            color: white;
+            font-weight: bold;
+        }
+
+        .api-function td {
+            color: white;
+        }
+
+        .api-function tr:last-child td {
+            border-bottom: none;
+        }
+
+        .api-function pre code {
+            display: block;
+            background-color: rgb(29, 23, 60);
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1rem;
+            margin: 15px 0;
+            white-space: pre-wrap;
+        }
+
+        .centered-image {
+            max-width: 80%;
+            height: auto;
+            margin: 20px auto;
+            display: block;
+        }
+
         @media (max-width: 768px) {
             body {
                 flex-direction: column;
@@ -172,8 +260,47 @@
                 border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             }
 
+            .sidebar p {
+                font-size: 0.9rem;
+                margin: 10px 0;
+                font-weight: 700;
+            }
+
             .content {
                 padding: 20px;
+            }
+
+            .api-function {
+                padding: 20px;
+                margin-top: 20px;
+            }
+
+            .api-function h1 {
+                font-size: 2rem;
+                margin: 15px 0 10px 0;
+            }
+
+            .api-function .code {
+                font-size: 1rem;
+            }
+
+            .api-function table {
+                font-size: 0.9rem;
+            }
+
+            .api-function th,
+            .api-function td {
+                padding: 10px;
+            }
+
+            .api-function pre code {
+                font-size: 0.9rem;
+                padding: 10px;
+            }
+
+            .centered-image {
+                max-width: 100%;
+                margin: 15px auto;
             }
         }
     </style>
@@ -181,54 +308,169 @@
 <body>
     <div class="sidebar">
         <h2>FATALITY API</h2>
+        <p>Using the cheat</p>
         <ul>
             <li class="menu-item">
-                <a href="#introduction" data-section="introduction">Introduction</a>
+                <a href="#Usingluascripts" data-section="Usingluascripts">Using lua scripts</a>
             </li>
+            <p>Developers</p>
             <li class="menu-item has-submenu">
-                <a href="#">Authentication</a>
+                <a href="#Writingluascripts" data-section="Writingluascripts">Writing lua scripts</a>
                 <ul class="sub-menu">
-                    <li><a href="#api-keys" data-section="api-keys">API Keys</a></li>
-                    <li><a href="#oauth" data-section="oauth">OAuth</a></li>
+                    <li><a href="#Gettingstarted" data-section="Gettingstarted">Getting started</a></li>
+                    <li class="menu-item has-submenu">
+                        <a href="#Examples" data-section="Examples">Examples</a>
+                        <ul class="sub-menu">
+                        </ul>
+                    </li>
                 </ul>
             </li>
             <li class="menu-item has-submenu">
-                <a href="#">Endpoints</a>
+                <a href="#">API Documentation</a>
                 <ul class="sub-menu">
-                    <li><a href="#users" data-section="users">Users</a></li>
-                    <li><a href="#data" data-section="data">Data</a></li>
+                    <li><a href="#ui" data-section="ui">ui</a></li>
+                    <li><a href="#plist-get" data-section="plist-get">plist.get</a></li>
                 </ul>
-            </li>
-            <li class="menu-item">
-                <a href="#examples" data-section="examples">Examples</a>
             </li>
         </ul>
     </div>
     <div class="content">
-        <section id="introduction" class="section">
-            <h1>Introduction</h1>
-            <p>Welcome to the FATALITY.WIN API Documentation. This guide provides details on how to use our API.</p>
-            <button>Get Started</button>
+        <section id="Usingluascripts" class="section">
+            <div class="api-function">
+                <h1>Using lua scripts</h1>
+                <p>1. Save the Lua script in the same folder as workspace\Fatality\lua. The file extension should be ".lua".</p>
+                <p>2. Go to the "MISC" tab. Here you'll see a list of all installed lua scripts.</p>
+                <img src="https://i.imgur.com/Ry8RgOL.png" alt="Lua Scripts List" class="centered-image">
+                <p>3. Select the script you want to load and click "Load". "Unload" disables the script. "Reload Active Script" restarts active scripts.</p>
+            </div>
         </section>
-        <section id="api-keys" class="section">
-            <h1>API Keys</h1>
-            <p>Details about generating and using API keys.</p>
+        <section id="Gettingstarted" class="section">
+            <div class="api-function">
+                <h1>Getting started</h1>
+                <p>Lua scripts let you extend the cheat in various ways and are a great way to automate parts of the cheat or add that one unique feature you always wanted. To get started with Lua scripting, you'll need a suitable text editor. We recommend downloading <a href="https://code.visualstudio.com/download" target="_blank">VS Code</a> or <a href="https://www.sublimetext.com/download" target="_blank">Sublime Text</a>, but <a href="https://notepad-plus-plus.org/downloads/" target="_blank">Notepad++</a> or even the built-in Microsoft Notepad will work in a pinch. If you're unfamiliar with the Lua programming language, <a href="https://learnxinyminutes.com/docs/lua/" target="_blank">Lua in 5 minutes</a> is a great guide to get started.</p>
+            </div>
         </section>
-        <section id="oauth" class="section">
-            <h1>OAuth</h1>
-            <p>Information on OAuth authentication.</p>
+        <section id="Examples" class="section">
+            <div class="api-function">
+                <h1>Examples</h1>
+                <p>These example show how to use certain parts of the FATALITY.WIN API and highlight best practices.</p>
         </section>
-        <section id="users" class="section">
-            <h1>Users</h1>
-            <p>Details about user-related endpoints.</p>
+        <section id="ui" class="section">
+            <div class="api-function">
+                <h1>ui</h1>
+                <p>Functions for interfacing with the FATALITY menu.</p>
+                <p><span class="code">Fatality.ui.add_element(tabName: string, panelName: string, item: table, other: string)</span></p>
+                <p>Adds a UI element to a specified tab and panel in the FATALITY menu.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Argument</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>tabName</td>
+                            <td>string</td>
+                            <td>Name of the tab where the element will be added</td>
+                        </tr>
+                        <tr>
+                            <td>panelName</td>
+                            <td>string</td>
+                            <td>Name of the panel (ScrollingFrame) within the tab</td>
+                        </tr>
+                        <tr>
+                            <td>item</td>
+                            <td>table</td>
+                            <td>Configuration table for the UI element, including type and required parameters</td>
+                        </tr>
+                        <tr>
+                            <td>other</td>
+                            <td>string</td>
+                            <td>Additional optional parameters (context-specific)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>This function allows you to dynamically add UI elements like checkboxes, comboboxes, sliders, etc., to the FATALITY menu. The <code>item</code> table must include a <code>type</code> field (e.g., "checkbox", "combobox", "slider") and the required parameters defined in <code>elementConfig</code>. Supported element types include: checkbox, combobox, colorpicker, slider, bind, textentry.</p>
+                <p>Examples of adding different UI elements:</p>
+                <p><strong>Checkbox Example:</strong></p>
+                <pre><code>Fatality.ui.add_element("Aimbot", "Visual", {
+    type = "checkbox",
+    text = "Snipline",
+    var = "Snipline",
+    colpicker = "SniplineCol", -- or colpicker2 = "SniplineCol2"
+    bind = "SniplineBind" -- or bind2 = "SniplineBind2"
+})</code></pre>
+                <p><strong>Combobox Example:</strong></p>
+                <pre><code>Fatality.ui.add_element("Aimbot", "Visual", {
+    type = "combobox",
+    text = "Custom ComboBox",
+    var = "ComboBox",
+    options = {"Option1", "Option2", "Option3"},
+    moresave = true,
+    colpicker = "ComboBoxCol" -- or bind = "ComboBoxBind"
+})</code></pre>
+                <p><strong>Colorpicker Example:</strong></p>
+                <pre><code>Fatality.ui.add_element("Aimbot", "Visual", {
+    type = "colorpicker",
+    text = "Custom ColorPicker",
+    var = "ColorPicker",
+    colpicker = "ColorPickerCol" -- or bind = "ColorPickerBind"
+})</code></pre>
+                <p><strong>Slider Example:</strong></p>
+                <pre><code>Fatality.ui.add_element("Aimbot", "Visual", {
+    type = "slider",
+    text = "Custom Slider",
+    var = "Slider",
+    min = 0,
+    max = 100,
+    dec = 1,
+    colpicker = "SliderCol" -- or bind = "SliderBind"
+})</code></pre>
+                <p><strong>Bind Example:</strong></p>
+                <pre><code>Fatality.ui.add_element("Aimbot", "Visual", {
+    type = "bind",
+    text = "Custom Bind",
+    var = "Bind",
+    colpicker = "BindCol" -- or bind = "BindBind"
+})</code></pre>
+                <p><strong>Textentry Example:</strong></p>
+                <pre><code>Fatality.ui.add_element("Aimbot", "Visual", {
+    type = "textentry",
+    text = "Custom TextEntry",
+    var = "TextEntry",
+    colpicker = "TextEntryCol" -- or bind = "TextEntryBind"
+})</code></pre>
+            </div>
         </section>
-        <section id="data" class="section">
-            <h1>Data</h1>
-            <p>Details about data endpoints.</p>
-        </section>
-        <section id="examples" class="section">
-            <h1>Examples</h1>
-            <p>Code examples for using the API.</p>
+        <section id="plist-get" class="section">
+            <div class="api-function">
+                <h1>plist.get</h1>
+                <p><span class="code">plist.get(entindex: number, field: string)</span></p>
+                <p>Functions for interacting with the player list.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Argument</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>entindex</td>
+                            <td>number (entindex)</td>
+                            <td>Player index</td>
+                        </tr>
+                        <tr>
+                            <td>field</td>
+                            <td>string (menu item)</td>
+                            <td>Name of the field</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
     </div>
     <script>
@@ -279,8 +521,8 @@
             });
         });
 
-        document.querySelector('#introduction').classList.add('active');
-        document.querySelector('a[data-section="introduction"]').classList.add('active');
+        document.querySelector('#Usingluascripts').classList.add('active');
+        document.querySelector('a[data-section="Usingluascripts"]').classList.add('active');
 
         window.addEventListener('load', () => {
             const hash = window.location.hash.replace('#', '');

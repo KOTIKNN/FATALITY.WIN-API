@@ -178,8 +178,8 @@
         .api-function h1 {
             font-size: 2.5rem;
             color: rgb(195, 44, 95);
-            margin: 0px 0 20px 0;
-            font-family: 'Courier New', Courier, monospace;
+            margin: 0px 0 40px 0;
+            font-family: 'Gotham', sans-serif;
             font-weight: 700;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
         }
@@ -330,7 +330,7 @@
                 <a href="#">API Documentation</a>
                 <ul class="sub-menu">
                     <li><a href="#ui" data-section="ui">ui</a></li>
-                    <li><a href="#plist-get" data-section="plist-get">plist.get</a></li>
+                    <li><a href="#client" data-section="client">client</a></li>
                 </ul>
             </li>
         </ul>
@@ -365,7 +365,7 @@
         </section>
         <section id="ui" class="section">
             <div class="api-function">
-                <h1>ui</h1>
+                <h1>ui.add_element</h1>
                 <p>Functions for interfacing with the FATALITY menu.</p>
                 <p><span class="code">Fatality.ui.add_element(tabName: string, panelName: string, item: table, other: string)</span></p>
                 <p>Adds a UI element to a specified tab and panel in the FATALITY menu.</p>
@@ -396,7 +396,7 @@
                         <tr>
                             <td>other</td>
                             <td>string</td>
-                            <td>Additional optional parameters (context-specific)</td>
+                            <td>Additional parameters (context-specific)</td>
                         </tr>
                     </tbody>
                 </table>
@@ -450,13 +450,9 @@
     var = "TextEntry",
     colpicker = "TextEntryCol" -- or bind = "TextEntryBind"
 })</code></pre>
-            </div>
-        </section>
-        <section id="plist-get" class="section">
-            <div class="api-function">
-                <h1>plist.get</h1>
-                <p><span class="code">plist.get(entindex: number, field: string)</span></p>
-                <p>Functions for interacting with the player list.</p>
+                <h1>ui.upd_element</h1>
+                <p><span class="code">Fatality.ui.upd_element(varName: string, item: table)</span></p>
+                <p>Updates an existing UI element in the FATALITY menu.</p>
                 <table>
                     <thead>
                         <tr>
@@ -467,17 +463,215 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>entindex</td>
-                            <td>number (entindex)</td>
-                            <td>Player index</td>
+                            <td>varName</td>
+                            <td>string</td>
+                            <td>Name of the variable associated with the UI element</td>
                         </tr>
                         <tr>
-                            <td>field</td>
-                            <td>string (menu item)</td>
-                            <td>Name of the field</td>
+                            <td>item</td>
+                            <td>table</td>
+                            <td>Configuration table with updated properties (var, bind, color, or options)</td>
                         </tr>
                     </tbody>
                 </table>
+                <p>This function updates the properties of an existing UI element, such as its value, bind, color, or options. It validates the input and updates the corresponding configuration in <code>Fatality.config</code>.</p>
+                <p>Examples of updating UI elements:</p>
+                <pre><code>Fatality.ui.upd_element("DistanceEntity", {
+    var = 10000
+})</code></pre>
+                <pre><code>Fatality.ui.upd_element("enableAimbot", {
+    var = false
+})</code></pre>
+                <pre><code>Fatality.ui.upd_element("enableAimbotBind", {
+    bind = "MouseButton1"
+})</code></pre>
+                <pre><code>Fatality.ui.upd_element("FreeCameraBind", {
+    bind = "Space"
+})</code></pre>
+                <pre><code>Fatality.ui.upd_element("ShowFOVCol", {
+    color = Color3.new(0.5, 0.5, 0.5), alpha = 0.7
+})</code></pre>
+                <pre><code>Fatality.ui.upd_element("TargetPriority", {
+    options = {"NewOption1", "NewOption2", "NewOption3", "NewOption4", "NewOption5", "NewOption6"}
+})</code></pre>
+                <pre><code>Fatality.ui.upd_element("ParticleCustom", {
+    var = "я гей"
+})</code></pre>
+                <h1>ui.add_pal</h1>
+                <p><span class="code">Fatality.ui.add_pal(tabName: string, sectionName: string, palNumber: number, panelName: string, height: number)</span></p>
+                <p>Adds a new panel to a specified column in a section of the FATALITY menu.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Argument</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>tabName</td>
+                            <td>string</td>
+                            <td>Name of the tab where the panel will be added</td>
+                        </tr>
+                        <tr>
+                            <td>sectionName</td>
+                            <td>string</td>
+                            <td>Name of the section within the tab</td>
+                        </tr>
+                        <tr>
+                            <td>palNumber</td>
+                            <td>number</td>
+                            <td>Column number (1, 2, or 3) where the panel will be placed</td>
+                        </tr>
+                        <tr>
+                            <td>panelName</td>
+                            <td>string</td>
+                            <td>Name of the new panel</td>
+                        </tr>
+                        <tr>
+                            <td>height</td>
+                            <td>number</td>
+                            <td>Height of the panel (optional, defaults to 180)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>This function creates a new scrolling panel with a title in the specified column of a section within a tab. It adjusts the layout order, adds a title frame, and creates a scrolling frame for UI elements.</p>
+                <p><strong>Example:</strong></p>
+                <pre><code>Fatality.ui.add_pal("Aimbot", "Aimbot", 2, "General", 200)</code></pre>
+                <h1>ui.update</h1>
+                <p><span class="code">Fatality.ui.update()</span></p>
+                <p>Refreshes the display of all UI elements in the FATALITY menu.</p>
+                <p>This function iterates through all UI element collections (ComboBoxes, Sliders, CheckBoxes, ColorPickers, Binds, and TextEntries) and calls their respective update functions to refresh their display.</p>
+                <p><strong>Example:</strong></p>
+                <pre><code>Fatality.ui.update()</code></pre>
+                <h1>ui.get_all</h1>
+                <p><span class="code">Fatality.ui.get_all()</span></p>
+                <p>Retrieves and logs information about all UI elements in the FATALITY menu.</p>
+                <p>This function collects data about all tabs, panels, and their associated UI elements, including their types, text, variables, and additional properties.</p>
+                <p><strong>Example:</strong></p>
+                <pre><code>Fatality.ui.get_all()</code></pre>
+                <h1>ui.is_menu_open</h1>
+                <p><span class="code">Fatality.ui.is_menu_open()</span></p>
+                <p>Checks if the main FATALITY menu is currently open.</p>
+                <p>This function returns a boolean indicating whether the main menu frame is visible.</p>
+                <p><strong>Example:</strong></p>
+                <pre><code>Fatality.RunService.Heartbeat:Connect(function()
+    if Fatality.ui.is_menu_open() then
+        print("FATALITY menu is open")
+    else
+        print("FATALITY menu is closed")
+    end
+end)</code></pre>
+            </div>
+        </section>
+        <section id="client" class="section">
+            <div class="api-function">
+                <h1>client_rgba</h1>
+                <p><span class="code">Fatality.client_rgba(varName: string)</span></p>
+                <p>Retrieves the RGBA values of a color stored in <code>Fatality.config.colors</code> for a given variable name.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Argument</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>varName</td>
+                            <td>string</td>
+                            <td>Name of the variable associated with the color</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>This function converts a <code>Color3</code> value and its associated alpha value from <code>Fatality.config.colors</code> into RGBA values (0-255).</p>
+                <h1>client_color3</h1>
+                <p><span class="code">Fatality.client_color3(r: number, g: number, b: number, a: number)</span></p>
+                <p>Converts RGBA values to a <code>Color3</code> object and an alpha value for use in the FATALITY system.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Argument</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>r</td>
+                            <td>number</td>
+                            <td>Red component (0-255)</td>
+                        </tr>
+                        <tr>
+                            <td>g</td>
+                            <td>number</td>
+                            <td>Green component (0-255)</td>
+                        </tr>
+                        <tr>
+                            <td>b</td>
+                            <td>number</td>
+                            <td>Blue component (0-255)</td>
+                        </tr>
+                        <tr>
+                            <td>a</td>
+                            <td>number</td>
+                            <td>Alpha component (0-255, optional, defaults to 255)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>This function takes RGBA values, clamps them to valid ranges, and converts them into a <code>Color3</code> object with an inverted alpha value (where 0 is opaque and 1 is transparent).</p>
+                <p><strong>Example Usage:</strong></p>
+                <pre><code>local r, g, b, a = Fatality.client_rgba("EspCol")
+Fatality.client_log(string.format("RGBA EspCol: %d, %d, %d, %d", r, g, b, a))
+
+local color3, alpha = Fatality.client_color3(r, g, b, a)
+Fatality.client_log(string.format("Color3: R=%.2f, G=%.2f, B=%.2f, Alpha=%.2f", color3.R, color3.G, color3.B, alpha))</code></pre>
+                <h1>client_log</h1>
+                <p><span class="code">Fatality.client_log(text: string)</span></p>
+                <p>Logs a message to the console with a FATALITY prefix. (ye i crazy)</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Argument</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>text</td>
+                            <td>string</td>
+                            <td>The message to be logged</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>This function outputs the provided text to the console, prefixed with <code>[FATALITY]</code>, using the standard print function.</p>
+                <p><strong>Example:</strong></p>
+                <pre><code>Fatality.client_log("Script initialized successfully")</code></pre>
+                <h1>client_warn</h1>
+                <p><span class="code">Fatality.client_warn(text: string)</span></p>
+                <p>Logs a warning message to the console with a FATALITY prefix. (ye i crazy x2)</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Argument</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>text</td>
+                            <td>string</td>
+                            <td>The warning message to be logged</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>This function outputs the provided text to the console as a warning, prefixed with <code>[FATALITY]</code>, using the warn function.</p>
+                <p><strong>Example:</strong></p>
+                <pre><code>Fatality.client_warn("Invalid configuration detected")</code></pre>
             </div>
         </section>
     </div>

@@ -647,91 +647,52 @@ end)</code></pre>
 
                 <h2>UI Elements Configurations for the items table</h2>
                 <p>Table <code>items</code> inside each item panel in <code>ui.add_tabs</code> can contain various UI elements. Below are configuration examples for each type of UI element:</p>
+                <p>Support bind,bind2,colpicker,colpicker2</p>
 
-                <h3>Checkbox</h3>
+                <h2>Checkbox</h2>
                 <ul>
                     <li>
                         <pre><code>{ type = "checkbox", text = "Enable Feature", var = "FeatureEnabled" }</code></pre>
                     </li>
-                    <li>
-                        <pre><code>{ type = "checkbox", text = "Enable Feature", var = "FeatureEnabled", colpicker = "FeatureColor" }</code></pre>
-                    </li>
-                    <li>
-                        <pre><code>{ type = "checkbox", text = "Enable Feature", var = "FeatureEnabled", colpicker = "Color1", colpicker2 = "Color2" }</code></pre>
-                    </li>
-                    <li>
-                        <pre><code>{ type = "checkbox", text = "Enable Feature", var = "FeatureEnabled", bind = "FeatureBind" }</code></pre>
-                    </li>
-                    <li>
-                        <pre><code>{ type = "checkbox", text = "Enable Feature", var = "FeatureEnabled", bind = "Bind1", bind2 = "Bind2" }</code></pre>
-                    </li>
-                    <li>
-                        <pre><code>{ type = "checkbox", text = "Enable Feature", var = "FeatureEnabled", colpicker = "FeatureColor", bind = "FeatureBind" }</code></pre>
-                    </li>
                 </ul>
 
-                <h3>Combobox</h3>
+                <h2>Combobox</h2>
+                <p>Support bind,colpicker</p>
                 <ul>
                     <li>
-                        <pre><code>{ type = "combobox", text = "Select Mode", var = "ModeVar", options = {"Mode1", "Mode2", "Mode3"} }</code></pre>
-                    </li>
-                    <li>
-                        <pre><code>{ type = "combobox", text = "Select Mode", var = "ModeVar", options = {"Mode1", "Mode2", "Mode3"}, moresave = true }</code></pre>
-                    </li>
-                    <li>
-                        <pre><code>{ type = "combobox", text = "Select Mode", var = "ModeVar", options = {"Mode1", "Mode2", "Mode3"}, colpicker = "ModeColor" }</code></pre>
-                    </li>
-                    <li>
-                        <pre><code>{ type = "combobox", text = "Select Mode", var = "ModeVar", options = {"Mode1", "Mode2", "Mode3"}, bind = "ModeBind" }</code></pre>
+                        <pre><code>{ type = "combobox", text = "Select Mode", var = "ModeVar", options = {"Mode1", "Mode2", "Mode3"}, moresave = false }</code></pre>
                     </li>
                 </ul>
 
-                <h3>Colorpicker</h3>
+                <h2>Colorpicker</h2>
+                <p>Support bind,colpicker</p>
                 <ul>
                     <li>
                         <pre><code>{ type = "colorpicker", text = "Select Color", var = "ColorVar" }</code></pre>
                     </li>
-                    <li>
-                        <pre><code>{ type = "colorpicker", text = "Select Color", var = "ColorVar", bind = "ColorBind" }</code></pre>
-                    </li>
                 </ul>
 
-                <h3>Slider</h3>
+                <h2>Slider</h2>
+                <p>Support bind,colpicker</p>
                 <ul>
-                    <li>
-                        <pre><code>{ type = "slider", text = "Adjust Value", var = "SliderVar", min = 0, max = 100 }</code></pre>
-                    </li>
                     <li>
                         <pre><code>{ type = "slider", text = "Adjust Value", var = "SliderVar", min = 0, max = 100, dec = 1 }</code></pre>
                     </li>
-                    <li>
-                        <pre><code>{ type = "slider", text = "Adjust Value", var = "SliderVar", min = 0, max = 100, colpicker = "SliderColor" }</code></pre>
-                    </li>
-                    <li>
-                        <pre><code>{ type = "slider", text = "Adjust Value", var = "SliderVar", min = 0, max = 100, bind = "SliderBind" }</code></pre>
-                    </li>
                 </ul>
 
-                <h3>Bind</h3>
+                <h2>Bind</h2>
+                <p>Support bind,colpicker</p>
                 <ul>
                     <li>
                         <pre><code>{ type = "bind", text = "Set Keybind", var = "BindVar" }</code></pre>
                     </li>
-                    <li>
-                        <pre><code>{ type = "bind", text = "Set Keybind", var = "BindVar", colpicker = "BindColor" }</code></pre>
-                    </li>
                 </ul>
 
-                <h3>Textentry</h3>
+                <h2>Textentry</h2>
+                <p>Support bind,colpicker</p>
                 <ul>
                     <li>
                         <pre><code>{ type = "textentry", text = "Enter Text", var = "TextVar" }</code></pre>
-                    </li>
-                    <li>
-                        <pre><code>{ type = "textentry", text = "Enter Text", var = "TextVar", colpicker = "TextColor" }</code></pre>
-                    </li>
-                    <li>
-                        <pre><code>{ type = "textentry", text = "Enter Text", var = "TextVar", bind = "TextBind" }</code></pre>
                     </li>
                 </ul>
             </div>

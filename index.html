@@ -354,7 +354,7 @@
         <section id="ExamplesTalkshit" class="section">
             <div class="api-function">
                 <h1>Talk Shit</h1>
-                <p>ну тут должна быть говорился</p>
+                <p>ну тут должна быть говорилка</p>
             </div>
         </section>
         <section id="Examples" class="section">
@@ -400,7 +400,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <p>This function allows you to dynamically add UI elements like checkboxes, comboboxes, sliders, etc., to the FATALITY menu. The <code>item</code> table must include a <code>type</code> field (e.g., "checkbox", "combobox", "slider") and the required parameters defined in <code>elementConfig</code>. Supported element types include: checkbox, combobox, colorpicker, slider, bind, textentry.</p>
+                <p>This function allows you to dynamically add UI elements like checkboxes, comboboxes, sliders, etc., to the FATALITY menu. The <code>item</code> table must include a <code>type</code> field (e.g., "checkbox", "combobox", " કانكريون) and the required parameters defined in <code>elementConfig</code>. Supported element types include: checkbox, combobox, colorpicker, slider, bind, textentry.</p>
                 <p>Examples of adding different UI elements:</p>
                 <p><strong>Checkbox Example:</strong></p>
                 <pre><code>Fatality.ui.add_element("Aimbot", "Visual", {
@@ -424,7 +424,9 @@
     type = "colorpicker",
     text = "Custom ColorPicker",
     var = "ColorPicker",
-    colpicker = "ColorPickerCol" -- or bind = "ColorPickerBind"
+    colétude
+
+ colpicker = "ColorPickerCol" -- or bind = "ColorPickerBind"
 })</code></pre>
                 <p><strong>Slider Example:</strong></p>
                 <pre><code>Fatality.ui.add_element("Aimbot", "Visual", {
@@ -563,6 +565,175 @@
         print("FATALITY menu is closed")
     end
 end)</code></pre>
+                <h1>ui.add_tabs</h1>
+                <p><span class="code">Fatality.ui.add_tabs(tabName: string, newItemPanels: table, scriptName: string)</span></p>
+                <p>Adds new sections and item panels to a specified tab in the FATALITY menu.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Argument</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>tabName</td>
+                            <td>string</td>
+                            <td>Name of the tab where the new sections and item panels will be added</td>
+                        </tr>
+                        <tr>
+                            <td>newItemPanels</td>
+                            <td>table</td>
+                            <td>Table containing data for the new sections and their item panels</td>
+                        </tr>
+                        <tr>
+                            <td>scriptName</td>
+                            <td>string</td>
+                            <td>Name of the script adding the tabs, for organizational purposes</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>This function allows you to dynamically add new sections and item panels to an existing tab in the FATALITY menu. Each section can contain multiple item panels, and each item panel can contain various UI elements such as checkboxes, comboboxes, sliders, etc. The <code>newItemPanels</code> table should be structured as a list of sections, each with a name and a list of item panels. Each item panel specifies its name, height (optional, defaults to 180), column (<code>pal</code>: 1, 2, or 3), and a list of UI elements.</p>
+                <p><strong>Example:</strong></p>
+                <pre><code>Fatality.ui.add_tabs("Combat", {
+    {
+        name = "Visual",
+        itempanels = {
+            {
+                name = "Test",
+                height = 100,
+                pal = 1,
+                items = {
+                    { type = "checkbox", text = "Test", var = "TestVar" }
+                }
+            }
+        }
+    },
+    {
+        name = "Chams",
+        itempanels = {
+            {
+                name = "Enemy",
+                height = 486,
+                pal = 1,
+                items = {
+                    { type = "checkbox", text = "Chams", var = "ChamsEnemy", colpicker = "VisibleChamsCol" },
+                    { type = "checkbox", text = "AlwaysOnTop", var = "ChamsEnemyAlwaysOnTop" },
+                    { type = "combobox", text = "Chams Materials", var = "ChamsMaterials", options = {"Flat", "Outline", "Glow", "Pulsating"} },
+                    { type = "checkbox", text = "Chams InVisible(NOT STABLE)", var = "ChamsEnemyInv", colpicker = "InvisibleChamsCol" },
+                    { type = "combobox", text = "Chams Materials Inv", var = "ChamsMaterialsInv", options = {"Flat", "Outline", "Glow", "Pulsating"} },
+                    { type = "slider", text = "Pulsating", var = "PulsatingSlider", min = 0, max = 1, dec = 1 },
+                    { type = "slider", text = "Glow Outline Min", var = "GlowOutlineMin", min = 0, max = 1, dec = 1 },
+                    { type = "slider", text = "Glow Outline Max", var = "GlowOutlineMax", min = 0, max = 1, dec = 1 }
+                }
+            },
+            {
+                name = "Entity",
+                height = 486,
+                pal = 2,
+                items = {
+                    { type = "checkbox", text = "Chams", var = "ChamsEntity", colpicker = "ChamsEntityCol" },
+                    { type = "checkbox", text = "AlwaysOnTop", var = "ChamsEntityAlwaysOnTop" },
+                    { type = "combobox", text = "Chams Materials", var = "ChamsMaterialsEntity", options = {"Flat", "Outline", "Glow", "Pulsating"} },
+                    { type = "slider", text = "Pulsating", var = "PulsatingSliderEntity", min = 0, max = 1, dec = 1 },
+                    { type = "slider", text = "Glow Outline Min", var = "GlowOutlineMinEntity", min = 0, max = 1, dec = 1 },
+                    { type = "slider", text = "Glow Outline Max", var = "GlowOutlineMaxEntity", min = 0, max = 1, dec = 1 }
+                }
+            }
+        }
+    }
+})</code></pre>
+
+                <h2>UI Elements Configurations for the items table</h2>
+                <p>Table <code>items</code> inside each item panel in <code>ui.add_tabs</code> can contain various UI elements. Below are configuration examples for each type of UI element:</p>
+
+                <h3>Checkbox</h3>
+                <ul>
+                    <li>
+                        <pre><code>{ type = "checkbox", text = "Enable Feature", var = "FeatureEnabled" }</code></pre>
+                    </li>
+                    <li>
+                        <pre><code>{ type = "checkbox", text = "Enable Feature", var = "FeatureEnabled", colpicker = "FeatureColor" }</code></pre>
+                    </li>
+                    <li>
+                        <pre><code>{ type = "checkbox", text = "Enable Feature", var = "FeatureEnabled", colpicker = "Color1", colpicker2 = "Color2" }</code></pre>
+                    </li>
+                    <li>
+                        <pre><code>{ type = "checkbox", text = "Enable Feature", var = "FeatureEnabled", bind = "FeatureBind" }</code></pre>
+                    </li>
+                    <li>
+                        <pre><code>{ type = "checkbox", text = "Enable Feature", var = "FeatureEnabled", bind = "Bind1", bind2 = "Bind2" }</code></pre>
+                    </li>
+                    <li>
+                        <pre><code>{ type = "checkbox", text = "Enable Feature", var = "FeatureEnabled", colpicker = "FeatureColor", bind = "FeatureBind" }</code></pre>
+                    </li>
+                </ul>
+
+                <h3>Combobox</h3>
+                <ul>
+                    <li>
+                        <pre><code>{ type = "combobox", text = "Select Mode", var = "ModeVar", options = {"Mode1", "Mode2", "Mode3"} }</code></pre>
+                    </li>
+                    <li>
+                        <pre><code>{ type = "combobox", text = "Select Mode", var = "ModeVar", options = {"Mode1", "Mode2", "Mode3"}, moresave = true }</code></pre>
+                    </li>
+                    <li>
+                        <pre><code>{ type = "combobox", text = "Select Mode", var = "ModeVar", options = {"Mode1", "Mode2", "Mode3"}, colpicker = "ModeColor" }</code></pre>
+                    </li>
+                    <li>
+                        <pre><code>{ type = "combobox", text = "Select Mode", var = "ModeVar", options = {"Mode1", "Mode2", "Mode3"}, bind = "ModeBind" }</code></pre>
+                    </li>
+                </ul>
+
+                <h3>Colorpicker</h3>
+                <ul>
+                    <li>
+                        <pre><code>{ type = "colorpicker", text = "Select Color", var = "ColorVar" }</code></pre>
+                    </li>
+                    <li>
+                        <pre><code>{ type = "colorpicker", text = "Select Color", var = "ColorVar", bind = "ColorBind" }</code></pre>
+                    </li>
+                </ul>
+
+                <h3>Slider</h3>
+                <ul>
+                    <li>
+                        <pre><code>{ type = "slider", text = "Adjust Value", var = "SliderVar", min = 0, max = 100 }</code></pre>
+                    </li>
+                    <li>
+                        <pre><code>{ type = "slider", text = "Adjust Value", var = "SliderVar", min = 0, max = 100, dec = 1 }</code></pre>
+                    </li>
+                    <li>
+                        <pre><code>{ type = "slider", text = "Adjust Value", var = "SliderVar", min = 0, max = 100, colpicker = "SliderColor" }</code></pre>
+                    </li>
+                    <li>
+                        <pre><code>{ type = "slider", text = "Adjust Value", var = "SliderVar", min = 0, max = 100, bind = "SliderBind" }</code></pre>
+                    </li>
+                </ul>
+
+                <h3>Bind</h3>
+                <ul>
+                    <li>
+                        <pre><code>{ type = "bind", text = "Set Keybind", var = "BindVar" }</code></pre>
+                    </li>
+                    <li>
+                        <pre><code>{ type = "bind", text = "Set Keybind", var = "BindVar", colpicker = "BindColor" }</code></pre>
+                    </li>
+                </ul>
+
+                <h3>Textentry</h3>
+                <ul>
+                    <li>
+                        <pre><code>{ type = "textentry", text = "Enter Text", var = "TextVar" }</code></pre>
+                    </li>
+                    <li>
+                        <pre><code>{ type = "textentry", text = "Enter Text", var = "TextVar", colpicker = "TextColor" }</code></pre>
+                    </li>
+                    <li>
+                        <pre><code>{ type = "textentry", text = "Enter Text", var = "TextVar", bind = "TextBind" }</code></pre>
+                    </li>
+                </ul>
             </div>
         </section>
         <section id="client" class="section">
